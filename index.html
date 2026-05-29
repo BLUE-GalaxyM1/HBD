@@ -4,151 +4,77 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-<title>Ultra Birthday Experience</title>
+<title>Happy Birthday, Sis!</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
 
-html,body{
-  width:100%;
+html, body {
+  width: 100%;
   height: 100%;
   min-height: 100vh;
   min-height: 100dvh;
 }
 
-body{
-  font-family:'Poppins',sans-serif;
-  background: radial-gradient(circle at top,#2e1065 0%,#0f172a 40%,#020617 100%);
-  overflow:hidden;
-  position:relative;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at center, #0d1b2a 0%, #0f172a 60%, #020617 100%);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* ================= BACKGROUND BLUR ================= */
-
-.bg1,.bg2{
-  position:absolute;
-  border-radius:50%;
-  filter:blur(120px);
-  opacity:.45;
-  z-index:0;
+/* ================= ELEGANT BLUE AMBIENT GLOWS ================= */
+.aura-cyan, .aura-royal {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.bg1{
-  width:45vw;
-  height:45vw;
-  min-width:250px;
-  min-height:250px;
-  background:#ff0080;
-  top:-10vw;
-  left:-10vw;
-  animation:bgMove1 12s infinite alternate ease-in-out;
+.aura-cyan {
+  width: 45vw;
+  height: 45vw;
+  background: #00f2fe;
+  top: -5%;
+  left: -5%;
+  animation: floatAura1 12s infinite alternate ease-in-out;
 }
 
-.bg2{
-  width:40vw;
-  height:40vw;
-  min-width:220px;
-  min-height:220px;
-  background:#00ffff;
-  bottom:-10vw;
-  right:-10vw;
-  animation:bgMove2 14s infinite alternate ease-in-out;
+.aura-royal {
+  width: 40vw;
+  height: 40vw;
+  background: #415a77;
+  bottom: -5%;
+  right: -5%;
+  animation: floatAura2 14s infinite alternate ease-in-out;
 }
 
-@keyframes bgMove1{
-  to{
-    transform:translate(5vw,5vw) scale(1.2);
-  }
+@keyframes floatAura1 { to { transform: translate(5vw, 5vw) scale(1.1); } }
+@keyframes floatAura2 { to { transform: translate(-5vw, -5vw) scale(1.15); } }
+
+/* ================= BACKGROUND CANVAS ================= */
+canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
 }
 
-@keyframes bgMove2{
-  to{
-    transform:translate(-5vw,-5vw) scale(1.25);
-  }
-}
-
-/* ================= STARS ================= */
-
-.stars{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:1;
-}
-
-.star{
-  position:absolute;
-  width:2px;
-  height:2px;
-  background:white;
-  border-radius:50%;
-  animation:twinkle 3s infinite alternate;
-}
-
-@keyframes twinkle{
-  from{
-    opacity:.2;
-    transform:scale(.6);
-  }
-  to{
-    opacity:1;
-    transform:scale(1.8);
-  }
-}
-
-/* ================= SHOOTING STARS ================= */
-
-.shooting-star{
-  position:absolute;
-  width:180px;
-  height:2px;
-  background:linear-gradient(to right,white,transparent);
-  opacity:.7;
-  transform:rotate(-35deg);
-  animation:shoot 5s linear infinite;
-  z-index:1;
-}
-
-@keyframes shoot{
-  0%{
-    transform:translate(-300px,-300px) rotate(-35deg);
-    opacity:0;
-  }
-
-  10%{
-    opacity:1;
-  }
-
-  100%{
-    transform:translate(120vw,100vh) rotate(-35deg);
-    opacity:0;
-  }
-}
-
-/* ================= CANVAS ================= */
-
-canvas{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:2;
-}
-
-/* ================= MAIN CONTAINER ================= */
-
-.container{
-  position: fixed; /* Explicitly fixed context locks layout window tightly */
+/* ================= BULLETPROOF LAYOUT HOLDER ================= */
+.fixed-layout-container {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -162,500 +88,360 @@ canvas{
   pointer-events: none;
 }
 
-/* ================= RINGS ================= */
-
-.ring-wrapper{
-  position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  pointer-events:none;
-}
-
-.ring1,.ring2{
-  position:absolute;
-  border-radius:50%;
-}
-
-.ring1{
-  width:min(70vw,500px);
-  height:min(70vw,500px);
-  border:1px solid rgba(255,255,255,.08);
-  animation:rotate 25s linear infinite;
-}
-
-.ring2{
-  width:min(55vw,380px);
-  height:min(55vw,380px);
-  border:2px dashed rgba(255,255,255,.1);
-  animation:rotateReverse 18s linear infinite;
-}
-
-@keyframes rotate{
-  from{
-    transform:rotate(0deg);
-  }
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-@keyframes rotateReverse{
-  from{
-    transform:rotate(360deg);
-  }
-  to{
-    transform:rotate(0deg);
-  }
-}
-
-/* ================= CARD ================= */
-
-.card{
-  position:relative;
+/* ================= CRYSTAL GLASSMORPHISM CARD ================= */
+.elegant-card {
+  position: relative;
   pointer-events: auto;
   width: 90vw;
-  max-width: 380px; /* Locked down maximum container width */
-  padding: 24px 20px;
-  border-radius:24px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.12),
-      rgba(255,255,255,0.03)
-    );
-
-  backdrop-filter:blur(28px);
-  -webkit-backdrop-filter:blur(28px);
-
-  border:1px solid rgba(255,255,255,.1);
-
-  box-shadow:
-    0 0 40px rgba(255,255,255,.06),
-    0 0 100px rgba(255,0,128,.12);
-
-  overflow:hidden;
-  text-align:center;
-  animation:floatCard 6s infinite ease-in-out;
+  max-width: 390px;
+  padding: 35px 24px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(13, 27, 42, 0.65), rgba(2, 6, 23, 0.5));
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  box-shadow: 
+    0 0 40px rgba(0, 242, 254, 0.08),
+    0 0 80px rgba(13, 27, 42, 0.5);
+  overflow: hidden;
+  text-align: center;
+  animation: elegantFloat 6s infinite ease-in-out;
 }
 
-@keyframes floatCard{
-  0%,100%{
-    transform:translateY(0px);
-  }
-
-  50%{
-    transform:translateY(-8px);
-  }
+@keyframes elegantFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
 }
 
-/* SHINE */
-
-.card::before{
-  content:'';
-  position:absolute;
-  width:200%;
-  height:200px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.18),
-      transparent
-    );
-
-  top:-100px;
-  left:-150%;
-  transform:rotate(-25deg);
-
-  animation:shine 6s infinite;
+/* SOFT SHIMMER OVERLAY */
+.elegant-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%; width: 200%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  transform: skewX(-20deg);
+  animation: cardShimmer 7s infinite ease-in-out;
 }
 
-@keyframes shine{
-  100%{
-    left:150%;
-  }
+@keyframes cardShimmer {
+  0%, 30% { left: -150%; }
+  100% { left: 150%; }
 }
 
-/* ================= TEXT ================= */
-
-.top{
-  color:#dbeafe;
-  letter-spacing:2px;
-  font-size: 0.7rem;
-  margin-bottom:14px;
+/* ================= TEXT STYLING WITH REVEAL & GRADIENT FLOW ================= */
+.top-tag {
+  font-size: 0.72rem;
+  letter-spacing: 5px;
+  color: #e0f2fe;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 300;
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
 }
 
-.title{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
+.main-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
 }
 
-.line{
-  display:flex;
-  justify-content:center;
-  flex-wrap:nowrap;
+.text-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
 }
 
-.letter{
-  display:inline-block;
-  font-size: clamp(1.5rem, 7vw, 2.6rem); /* Sized down to fit tightly inside the compact wrapper */
-  font-weight:800;
-  margin:0 2px;
-  opacity:0;
-
-  transform:
-    translateY(80px)
-    scale(.5)
-    rotateX(90deg);
-
-  background:
-    linear-gradient(
-      90deg,
-      #ffffff,
-      #ff9ed8,
-      #7cf7ff,
-      #ffffff
-    );
-
-  background-size:300%;
-
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-
-  text-shadow:
-    0 0 25px rgba(255,255,255,.2);
-
-  animation:
-    letterReveal 1s forwards,
+.sparkle-letter {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 8vw, 2.8rem);
+  font-weight: 700;
+  margin: 0 2px;
+  opacity: 0;
+  transform: translateY(80px) scale(.5) rotateX(90deg);
+  background: linear-gradient(90deg, #ffffff, #3a86ff, #7cf7ff, #ffffff);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(255,255,255,.2);
+  animation: 
+    letterReveal 1s forwards, 
     gradientFlow 5s linear infinite;
 }
 
-@keyframes letterReveal{
-  100%{
-    opacity:1;
-    transform:
-      translateY(0)
-      scale(1)
-      rotateX(0deg);
+@keyframes letterReveal {
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
   }
 }
 
-@keyframes gradientFlow{
-  to{
-    background-position:300%;
+@keyframes gradientFlow {
+  to {
+    background-position: 300%;
   }
 }
 
-.name{
-  margin-top:14px;
-  font-family:'Dancing Script',cursive;
-  font-size: clamp(1.3rem, 5vw, 2.0rem);
-  color:white;
-  opacity:0;
-
-  animation:fadeIn 2s forwards;
-  animation-delay:2.3s;
-
-  line-height:1.3;
-
-  text-shadow:
-    0 0 25px rgba(255,255,255,.2);
-
-  word-break:break-word;
+/* ================= TEXT ANIMATION EFFECTS ================= */
+.dedication {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+  color: #fff;
+  margin-bottom: 12px;
+  opacity: 0; /* Hidden initially for fade reveal sequence */
 }
 
-.message{
-  margin-top:12px;
-  color:rgba(255,255,255,.88);
-  font-size: 0.85rem;
-  line-height:1.5;
-  max-width:320px;
-  margin-left:auto;
-  margin-right:auto;
-  opacity:0;
-
-  animation:fadeIn 1.5s forwards;
-  animation-delay:3s;
+.dedication span {
+  color: #bae6fd;
+  font-weight: 600;
+  text-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
 }
 
-@keyframes fadeIn{
-  to{
-    opacity:1;
+/* Upright blue heart with a staggered bounce-scale reveal */
+.heart-pop {
+  font-style: normal; 
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0.5);
+  animation: heartReveal 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation-delay: 2.3s; /* Pops up right as the line finishes drawing */
+}
+
+.message-body {
+  font-size: clamp(0.82rem, 2.8vw, 0.95rem);
+  color: #cbd5e1;
+  line-height: 1.6;
+  max-width: 320px;
+  margin: 0 auto;
+  font-weight: 300;
+  opacity: 0; /* Hidden initially for sequence */
+}
+
+/* --- ANIMATION TRIGGERS --- */
+.animate-fade-up {
+  animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 1.8s; /* Starts right after main title letters drop */
+}
+
+.animate-fade-up-delayed {
+  animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 2.6s; /* Drifts up smoothly at the very end */
+}
+
+/* --- KEYFRAMES --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* ================= FLOATING LIGHTS ================= */
-
-.light{
-  position:absolute;
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  filter:blur(2px);
-  animation:floatLight linear infinite;
-  z-index:3;
-}
-
-@keyframes floatLight{
-  from{
-    transform:
-      translateY(110vh)
-      scale(.5);
-
-    opacity:0;
-  }
-
-  20%{
-    opacity:1;
-  }
-
-  to{
-    transform:
-      translateY(-120vh)
-      scale(1.6);
-
-    opacity:0;
+@keyframes heartReveal {
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.6));
   }
 }
 
-/* ================= MOBILE EXCLUSIVES ================= */
+/* ================= MAGIC GLOWING DUST PARTICLES ================= */
+.magic-dust {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  animation: driftUp linear infinite;
+  z-index: 3;
+  pointer-events: none;
+}
 
-@media (max-width:480px) {
-  .ring-wrapper {
-    display:none;
-  }
+@keyframes driftUp {
+  from { transform: translateY(110vh) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+  to { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+}
 
-  .card {
+/* ================= PHONE SCREEN ADJUSTMENTS ================= */
+@media (max-width: 480px) {
+  .elegant-card {
     width: 88vw;
-    padding: 20px 14px;
+    padding: 30px 20px;
+    border-radius: 24px;
   }
-
-  .letter {
-    font-size: 2.1rem;
-  }
-
-  .bg1, .bg2 {
-    filter: blur(90px);
+  .sparkle-letter {
+    font-size: 2.2rem;
   }
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="bg1"></div>
-<div class="bg2"></div>
+<div class="aura-cyan"></div>
+<div class="aura-royal"></div>
+<canvas id="sparkleCanvas"></canvas>
 
-<div class="shooting-star" style="top:10%;left:-10%;animation-delay:0s"></div>
-<div class="shooting-star" style="top:30%;left:-20%;animation-delay:2.5s"></div>
-<div class="shooting-star" style="top:55%;left:-15%;animation-delay:4.5s"></div>
-
-<div class="stars"></div>
-
-<canvas id="canvas"></canvas>
-
-<div class="container">
-  <div class="ring-wrapper">
-    <div class="ring1"></div>
-    <div class="ring2"></div>
-  </div>
-
-  <div class="card">
-    <div class="top">
-      ✨ TODAY IS ALL ABOUT YOU ✨
+<div class="fixed-layout-container">
+  <div class="elegant-card">
+    
+    <div class="top-tag">✨ Celebrating You ✨</div>
+    
+    <div class="main-title">
+      <div id="row1" class="text-row"></div>
+      <div id="row2" class="text-row"></div>
+    </div>
+    
+    <div class="dedication animate-fade-up">
+      To My <span>Darling Bestie ji</span> <span class="heart-pop">💙</span>
+    </div>
+    
+    <div class="message-body animate-fade-up-delayed">
+      Always be happy and blessed. Thank you for always being the best Bestie ever!
     </div>
 
-    <div class="title">
-      <div id="row1" class="line"></div>
-      <div id="row2" class="line"></div>
-    </div>
-
-    <div class="name">
-      To My Darling Bestie Ji 💖
-    </div>
-
-    <div class="message">
-      May your future glow brighter than every firework in the sky tonight.
-    </div>
   </div>
 </div>
 
 <script>
+/* ================= SEQUENCED LETTER WRITER ================= */
+const textLine1 = "HAPPY";
+const textLine2 = "BIRTHDAY";
+const target1 = document.getElementById('row1');
+const target2 = document.getElementById('row2');
 
-/* ================= STARS ================= */
+let combinedIndex = 0;
 
-const stars = document.querySelector('.stars');
-const totalStars = window.innerWidth < 768 ? 90 : 180;
-
-for(let i=0;i<totalStars;i++){
-  const star = document.createElement('div');
-  star.classList.add('star');
-
-  star.style.left = Math.random()*100 + '%';
-  star.style.top = Math.random()*100 + '%';
-  star.style.animationDuration = (Math.random()*3 + 2) + 's';
-
-  stars.appendChild(star);
+function generateLetters(word, targetGrid) {
+  word.split('').forEach(letter => {
+    const span = document.createElement('span');
+    span.className = 'sparkle-letter';
+    span.textContent = letter;
+    span.style.animationDelay = `${combinedIndex * 0.1}s, ${combinedIndex * 0.05}s`;
+    targetGrid.appendChild(span);
+    combinedIndex++;
+  });
 }
 
-/* ================= LETTERS ================= */
+generateLetters(textLine1, target1);
+generateLetters(textLine2, target2);
 
-const word1 = 'HAPPY';
-const word2 = 'BIRTHDAY';
-
-const r1 = document.getElementById('row1');
-const r2 = document.getElementById('row2');
-
-let li = 0;
-
-word1.split('').forEach(c=>{
-  const s = document.createElement('span');
-  s.className = 'letter';
-  s.textContent = c;
-  s.style.animationDelay = `${li*0.1}s, ${li*0.05}s`;
-  r1.appendChild(s);
-  li++;
-});
-
-word2.split('').forEach(c=>{
-  const s = document.createElement('span');
-  s.className = 'letter';
-  s.textContent = c;
-  s.style.animationDelay = `${li*0.1}s, ${li*0.05}s`;
-  r2.appendChild(s);
-  li++;
-});
-
-/* ================= LIGHTS ================= */
-
-const colors = [
-  '#ff4d9d',
-  '#7cf7ff',
-  '#ffd166',
-  '#ffffff',
-  '#9b5cff'
-];
-
-function createLight(){
-  const light = document.createElement('div');
-  light.classList.add('light');
-  light.style.left = Math.random()*100 + 'vw';
-
-  const color = colors[Math.floor(Math.random()*colors.length)];
-  light.style.background = color;
-  light.style.boxShadow = `0 0 20px ${color}`;
-  light.style.animationDuration = (Math.random()*6 + 5) + 's';
-
-  document.body.appendChild(light);
-
-  setTimeout(()=>{
-    light.remove();
-  },12000);
+/* ================= FLOATING BLUE FAIRY DUST ================= */
+function spawnDust() {
+  const dust = document.createElement('div');
+  dust.classList.add('magic-dust');
+  dust.style.left = Math.random() * 100 + 'vw';
+  
+  const size = Math.random() * 3 + 2;
+  dust.style.width = size + 'px';
+  dust.style.height = size + 'px';
+  
+  const palette = ['#ffffff', '#e0f2fe', '#bae6fd', '#7cd1ff', '#00f2fe'];
+  dust.style.background = palette[Math.floor(Math.random() * palette.length)];
+  dust.style.boxShadow = `0 0 8px ${dust.style.background}`;
+  
+  dust.style.animationDuration = (Math.random() * 5 + 6) + 's';
+  document.body.appendChild(dust);
+  
+  setTimeout(() => dust.remove(), 11000);
 }
+setInterval(spawnDust, 300);
 
-setInterval(createLight,350);
-
-/* ================= FIREWORKS ================= */
-
-const canvas = document.getElementById('canvas');
+/* ================= SHIMMER CYAN STARDUST CANVAS ENGINE ================= */
+const canvas = document.getElementById('sparkleCanvas');
 const ctx = canvas.getContext('2d');
 
-function resizeCanvas(){
+function syncCanvasSize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
+syncCanvasSize();
+window.addEventListener('resize', syncCanvasSize);
 
-resizeCanvas();
+let particlePool = [];
+const colorPalette = ['#ffffff', '#e0f2fe', '#7cd1ff', '#00b4d8', '#00f2fe'];
 
-let particles = [];
-
-class Particle{
-  constructor(x,y,color){
+class SparkleParticle {
+  constructor(x, y, color) {
     this.x = x;
     this.y = y;
     this.color = color;
-    this.radius = Math.random()*2 + 1.5;
-    this.speedX = (Math.random()-.5)*10;
-    this.speedY = (Math.random()-.5)*10;
+    this.radius = Math.random() * 2 + 1;
+    
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 4 + 0.5;
+    this.dx = Math.cos(angle) * speed;
+    this.dy = Math.sin(angle) * speed;
+    
     this.alpha = 1;
-    this.gravity = .04;
+    this.fade = Math.random() * 0.012 + 0.008;
+    this.friction = 0.97;
+    this.gravity = 0.03;
   }
 
-  update(){
-    this.x += this.speedX;
-    this.y += this.speedY;
-    this.speedY += this.gravity;
-    this.alpha -= .012;
+  update() {
+    this.dx *= this.friction;
+    this.dy *= this.friction;
+    this.dy += this.gravity;
+    this.x += this.dx;
+    this.y += this.dy;
+    this.alpha -= this.fade;
   }
 
-  draw(){
+  draw() {
     ctx.save();
     ctx.globalAlpha = this.alpha;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fillStyle = this.color;
-    ctx.shadowBlur = 20;
+    ctx.shadowBlur = 10;
     ctx.shadowColor = this.color;
     ctx.fill();
     ctx.restore();
   }
 }
 
-function createFirework(x,y){
-  const particleCount = window.innerWidth < 768 ? 45 : 100;
-
-  for(let i=0;i<particleCount;i++){
-    particles.push(
-      new Particle(
-        x,
-        y,
-        colors[Math.floor(Math.random()*colors.length)]
-      )
-    );
+function triggerBurst(x, y) {
+  const density = window.innerWidth < 768 ? 35 : 70;
+  for (let i = 0; i < density; i++) {
+    const randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+    particlePool.push(new SparkleParticle(x, y, randomColor));
   }
 }
 
-function animate(){
-  ctx.fillStyle = 'rgba(2,6,23,.18)';
+function loop() {
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.15)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  particles.forEach((p,i)=>{
-    p.update();
-    p.draw();
-    if(p.alpha <= 0){
-      particles.splice(i,1);
+  for (let i = particlePool.length - 1; i >= 0; i--) {
+    const item = particlePool[i];
+    item.update();
+    item.draw();
+    if (item.alpha <= 0) {
+      particlePool.splice(i, 1);
     }
-  });
-
-  requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(loop);
 }
+loop();
 
-animate();
-
-setInterval(()=>{
-  createFirework(
-    Math.random()*canvas.width,
-    Math.random()*canvas.height/2
+setInterval(() => {
+  triggerBurst(
+    Math.random() * canvas.width,
+    Math.random() * (canvas.height * 0.5)
   );
-},1600);
+}, 1800);
 
-/* CLICK FIREWORKS */
-
-window.addEventListener('click',(e)=>{
-  createFirework(
-    e.clientX,
-    e.clientY
-  );
+window.addEventListener('click', (e) => {
+  triggerBurst(e.clientX, e.clientY);
 });
-
-window.addEventListener('resize', resizeCanvas);
-
 </script>
 
 </body>
